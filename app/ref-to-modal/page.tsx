@@ -1,5 +1,5 @@
 "use client";
-import { BodyLong, Button, Modal, Page } from "@navikt/ds-react";
+import { BodyLong, Box, Button, Modal, Page } from "@navikt/ds-react";
 import { forwardRef, RefObject, useRef } from "react";
 
 const ComponentParent = () => {
@@ -91,12 +91,14 @@ const ComponentChildCWithModal = ({
 export default function Home() {
   return (
     <main>
-      <BodyLong>
-        {`
+      <Box marginBlock="10">
+        <BodyLong>
+          {`
 This is a demo of sending a "ref" down through Aksel components (specifically a ref to the "<Modal />" component)
 `}
-      </BodyLong>
-      <ComponentParent />
+        </BodyLong>
+        <ComponentParent />
+      </Box>
     </main>
   );
 }
