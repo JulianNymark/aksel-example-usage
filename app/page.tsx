@@ -1,21 +1,30 @@
 "use client";
-import { BodyLong, Box, Link } from "@navikt/ds-react";
+import { Box, HStack, Link, VStack } from "@navikt/ds-react";
+
+const createLink = (inputLink: string) => {
+  return (
+    <HStack>
+      <Box asChild marginInline="0 5">
+        <Link href={`/${inputLink}`}>{inputLink}</Link>
+      </Box>
+      <Box asChild>
+        <Link
+          href={`https://github.com/JulianNymark/aksel-example-usage/blob/main/app/${inputLink}/page.tsx`}
+        >
+          (source)
+        </Link>
+      </Box>
+    </HStack>
+  );
+};
 
 const Page = () => {
   return (
     <main>
-      <Box asChild marginBlock="10">
-        <BodyLong>
-          <Box asChild marginInline="0 5">
-            <Link href="/ref-to-modal">ref-to-modal</Link>
-          </Box>
-          <Box asChild>
-            <Link href="https://github.com/JulianNymark/aksel-example-usage/blob/main/app/ref-to-modal/page.tsx">
-              (source)
-            </Link>
-          </Box>
-        </BodyLong>
-      </Box>
+      <VStack marginBlock="10">
+        {createLink("ref-to-modal")}
+        {createLink("string-type-to-token")}
+      </VStack>
     </main>
   );
 };
