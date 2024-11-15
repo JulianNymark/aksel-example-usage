@@ -108,7 +108,7 @@ const Render = () => {
             </VStack>
           </VStack>
         )}
-        <div id="file-errors" aria-live="polite">
+        <div id="file-errors" className="sr-only" aria-live="polite">
           {rejectedFiles.map((rejected, index) => {
             // @ts-ignore
             return <span key={index}>{errors[rejected.reasons[0]]}</span>;
