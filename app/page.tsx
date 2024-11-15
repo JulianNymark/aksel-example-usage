@@ -1,5 +1,5 @@
 "use client";
-import { Box, HStack, Link, VStack } from "@navikt/ds-react";
+import { Box, Heading, HStack, Link, VStack } from "@navikt/ds-react";
 
 const createLink = (inputLink: string) => {
   return (
@@ -21,9 +21,16 @@ const createLink = (inputLink: string) => {
 const Page = () => {
   return (
     <main>
-      <VStack marginBlock="10">
-        {createLink("ref-to-modal")}
-        {createLink("string-type-to-token")}
+      <VStack marginBlock="10" gap={"4"}>
+        <Heading level="1" size="medium">
+          Diverse
+        </Heading>
+        <Box>{createLink("ref-to-modal")}</Box>
+        <Box>{createLink("fileupload-with-aria-live")}</Box>
+        <Heading level="1" size="medium">
+          Typescript
+        </Heading>
+        <Box>{createLink("string-type-to-token")}</Box>
       </VStack>
     </main>
   );
