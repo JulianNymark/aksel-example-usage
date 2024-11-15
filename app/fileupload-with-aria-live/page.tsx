@@ -11,6 +11,7 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useState } from "react";
 import { UNSAFE_FileUpload as FileUpload } from "@navikt/ds-react";
+import { renderToStaticMarkup, renderToString } from "react-dom/server";
 
 const MAX_FILES = 3;
 const MAX_SIZE_MB = 1;
@@ -75,6 +76,18 @@ const Render = () => {
   const acceptedFiles = files.filter((file) => !file.error);
   const rejectedFiles = files.filter((f): f is FileRejected => f.error);
 
+  useEffect(() => {
+    const errors_element = document.querySelector("#aria-live-errors");
+    errors_element?.replaceChildren();
+    console.log({ errors_element });
+    for (const rejected of rejectedFiles) {
+      const p = document.createElement("p");
+      // @ts-ignore
+      p.innerHTML = errors[rejected.reasons[0]];
+      errors_element?.appendChild(p);
+    }
+  }, [rejectedFiles]);
+
   return (
     <FileUpload style={{ width: 500, maxWidth: "100%", margin: "0 auto" }}>
       <VStack gap="6">
@@ -108,12 +121,7 @@ const Render = () => {
             </VStack>
           </VStack>
         )}
-        <div id="file-errors" className="sr-only" aria-live="polite">
-          {rejectedFiles.map((rejected, index) => {
-            // @ts-ignore
-            return <span key={index}>{errors[rejected.reasons[0]]}</span>;
-          })}
-        </div>
+
         {rejectedFiles.length > 0 && (
           <VStack gap="2">
             <Heading level="3" size="xsmall">

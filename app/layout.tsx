@@ -20,6 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <div
+          id="aria-live-errors"
+          aria-live="polite"
+          aria-relevant="additions"
+          className="sr-only"
+        />
         <Page>
           <PageBlock width="lg">{children}</PageBlock>
         </Page>
