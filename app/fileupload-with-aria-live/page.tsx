@@ -110,6 +110,7 @@ const Render = () => {
         )}
         <div id="file-errors" aria-live="polite">
           {rejectedFiles.map((rejected, index) => {
+            // @ts-ignore
             return <span key={index}>{errors[rejected.reasons[0]]}</span>;
           })}
         </div>
@@ -124,6 +125,7 @@ const Render = () => {
                   key={index}
                   index={index}
                   file={rejected.file}
+                  // @ts-ignore
                   error={errors[rejected.reasons[0]]}
                   onDelete={() => removeFile(rejected)}
                 />
